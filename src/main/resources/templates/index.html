@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>sample</h2>
+	<h2 sec:authorize="hasRole('ADMIN')">またね</h2>
+	<a th:href="@{/logout}">ログアウト</a>
+	
+
+</body>
+</html>
