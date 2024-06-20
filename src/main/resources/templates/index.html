@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h2>sample</h2>
-	<h2 sec:authorize="hasRole('ADMIN')">またね</h2>
+	<a sec:authorize="hasRole('ADMIN')" th:href="@{/signup}">新規ユーザー登録</a>
 	<a th:href="@{/logout}">ログアウト</a>
 	
 

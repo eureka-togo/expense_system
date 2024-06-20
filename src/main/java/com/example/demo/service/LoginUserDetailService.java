@@ -25,5 +25,20 @@ public class LoginUserDetailService implements UserDetailsService{
 	    return _user.map(user -> new LoginUserDetails(user))
 	        .orElseThrow(() -> new UsernameNotFoundException("not found email=" + email));
 	  }
+	  
+	  /*@Autowired
+	  JdbcTemplate jdbcTemplate;
+	  
+	  @Autowired
+	  PasswordEncoder passwordEncoder;
+	  
+	  @Transactional
+	  public void register(String name,Integer employeeNumber,Integer departmentid,String roles,String email,String password) {
+		  String sql = "INSERT INTO user (name,employee_number,departmentid,roles,email,password) VALUES(?,?,?,?,?,?)";
+		  jdbcTemplate.update(sql,name,employeeNumber,departmentid,roles,email,passwordEncoder.encode(password));
+	  }*/
+	  
+	  
+	  
 
 }

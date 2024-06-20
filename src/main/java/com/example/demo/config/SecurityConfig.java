@@ -35,11 +35,18 @@ public class SecurityConfig {
         .permitAll())
         .authorizeHttpRequests(authz -> authz
             .requestMatchers("/css/**").permitAll() // CSSファイルは認証不要で使えるようにする
-            .requestMatchers("/").permitAll() //  トップページは認証不要
-            .requestMatchers("/createUser").hasRole("ADMIN")
+            //.requestMatchers("/").permitAll() //  トップページは認証不要
+            .requestMatchers("/signup").hasRole("ADMIN")
             .anyRequest().authenticated() //  他のURLはログイン後アクセス可能
         );
 
     return http.build();
   }
+  
+  /*@Bean
+  public UserDetailsManager userDetailsManager() {
+	  JdbcUserDetailsManager user = new JdbcUserDetailsManager(this.user);
+	  
+	  return user;
+  }*/
 }

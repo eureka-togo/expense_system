@@ -16,12 +16,16 @@ public class LoginUserDetails implements UserDetails {
 	private final String email;
 	  private final String password;
 	  private final String name;
+	  private final Integer employeeNumber;
+	  private final Integer departmentid;
 	  private final Collection <? extends GrantedAuthority> authorities;
 	  
 	  public LoginUserDetails(User user) {
 	    this.email = user.getEmail();
 	    this.password = user.getPassword(); 
 	    this.name = user.getName();
+	    this.employeeNumber = user.getEmployeeNumber();
+	    this.departmentid = user.getDepartmentid();
 	    this.authorities = Arrays.stream(user.getRoles().split(","))
 	        .map(role -> new SimpleGrantedAuthority(role))
 	        .toList();
@@ -48,6 +52,14 @@ public class LoginUserDetails implements UserDetails {
 	  public String getName() {
 	    // ユーザー名を返す
 	    return name;
+	  }
+	  
+	  public Integer getEmployeeNumber() {
+		  return employeeNumber;
+	  }
+	  
+	  public Integer getDepartmentid() {
+		  return departmentid;
 	  }
 	  
 	  @Override
