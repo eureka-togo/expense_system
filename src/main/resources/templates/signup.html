@@ -11,9 +11,12 @@
             <div th:text="${signupError}"></div>
         </div>
         <label for="name">ユーザー名</label>
-        <input type="text" id="name" name="name" th:value="${signupForm.name}"><br>
+        <input type="text" id="name" name="name" th:value="${signupForm.name}" th:field="*{name}"><br>
+		<ul th:if="${#fields.hasErrors('*')}">
+			<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li><br>
+		</ul>
 		<label for="employeeNumber">社員番号</label>
-		<input type="text" id="employeeNumber" name="employeeNumber" th:value="${signupForm.employeeNumber}"><br>
+		<input type="text" id="employeeNumber" name="employeeNumber" th:value="${signupForm.employeeNumber}" th:field="*{employeeNumber}"><br>
 		<label for="departmentid">所属部署ID</label>
 		<input type="text" id="departmentid" name="departmentid" th:value="${signupForm.departmentid}"><br>
 		<label for="roles">役割</label>
@@ -24,6 +27,6 @@
         <input type="password" id="password" name="password" th:value="${signupForm.password}"><br>
         <button type="submit">登録</button>
     </form>
-    <a href="/login">ログイン画面</a>
+    <a th:href="@{/}">ホーム画面</a>
 </body>
 </html>

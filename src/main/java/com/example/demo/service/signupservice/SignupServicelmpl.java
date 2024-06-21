@@ -17,6 +17,7 @@ public class SignupServicelmpl implements SignupService {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
 
 	@Override
 	public Iterable<User> selectAll() {
