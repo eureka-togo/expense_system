@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登録明細一覧</title>
+</head>
+<body>
+	<!-- <div th:if="${statementForm.newStatement}" style="margin: 10px">
+	        <h3>登録明細一覧</h3>
+	        <table border="1" th:unless="${#lists.isEmpty(list)}" style="table-layout: fixed;">
+	            <tr>
+	                <th>明細ID</th>
+	                <th>作成者ID</th>
+	                <th>明細作成日</th>
+	                <th>科目ID</th>
+	                <th>支払先・内容</th>
+	                <th>明細金額</th>
+	                <th>備考</th>
+	                <th>経費ID</th>
+	            </tr>
+	            <tr th:each="obj : ${list}" align="center">
+	                <td th:text="${obj.statementid}"></td>
+	                <td th:text="${obj.userid}"></td>
+	                <td th:text="${obj.statementCreationDate}"></td>
+	                <td th:text="${obj.subjectid}"></td>
+	                <td th:text="${obj.content}"></td>
+	                <td th:text="${obj.statementPrice}+'円'"></td>
+	                <td th:text="${obj.note}"></td>
+	                <td th:text="${obj.expenseid}"></td>
+	            </tr>
+	        </table>
+	        <p th:if="${#lists.isEmpty(list)}">登録されている明細はありません。</p>
+			<a th:href="@{/}">ホーム画面</a>
+	    </div> -->
+
+</body>
+</html>

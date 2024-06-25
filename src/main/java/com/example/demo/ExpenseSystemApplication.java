@@ -8,18 +8,21 @@ public class ExpenseSystemApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ExpenseSystemApplication.class, args);
-		//.getBean(ExpenseSystemApplication.class).execute();//
+		/*.getBean(ExpenseSystemApplication.class).execute();
 	}
-	/*@Autowired
-	UserRepository repository;
+	@Autowired
+	StatementService service;
 	private void execute() {
-		setup();
+		showList();
 	}
 	
-	private void setup() {
-		User user2 = new User(null,"渡辺 良太",999,2,2,"watanape@gmail.com","aaa");
-		user2 = repository.save(user2);
-		System.out.println("できたよ");
-	}*/
+	private void showList() {
+		Iterable<Statement> statementes= service.selectAll();
+		for(Statement statement : statementes) {
+		System.out.println(statement);
+	}
+		System.out.println("できたよ");*/
 
 }
+}
+

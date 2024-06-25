@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
 <body>
-	<h2>sample</h2>
-	<div th:text="'こんにちは' + ${#authentication.principal.employeeNumber} + ${#authentication.principal.name} + 'さん'"></div>
-	<a sec:authorize="hasRole('ADMIN')" th:href="@{/signup}">新規ユーザー登録</a>
-	<a th:href="@{/logout}">ログアウト</a>
-	
-
+    <h2>sample</h2>
+    <div th:text="'こんにちは ' + ${employeeNumber} + ${name} + ' さん'"></div>
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/signup}">新規ユーザー登録</a><br>
+    <a th:href="@{/statementList}">明細確認</a>
+	<a th:href="@{/statementCreate}">明細登録</a><br>
+    <a th:href="@{/logout}">ログアウト</a><br>
+	<!-- <div th:if="${statements}" style="margin: 10px">
+	        <h3>登録明細一覧</h3>
+	        <table border="1" th:unless="${#lists.isEmpty(statements)}" style="table-layout: fixed;">
+	            <tr>
+	                <th>明細ID</th>
+	                <th>作成者ID</th>
+	                <th>明細作成日</th>
+	                <th>科目ID</th>
+	                <th>支払先・内容</th>
+	                <th>明細金額</th>
+	                <th>備考</th>
+	                <th>経費ID</th>
+	            </tr>
+	            <tr th:each="statement : ${statements}" align="center">
+	                <td th:text="${statement.statementid}"></td>
+	                <td th:text="${statement.userid}"></td>
+	                <td th:text="${statement.statementCreationDate}"></td>
+	                <td th:text="${statement.subjectid}"></td>
+	                <td th:text="${statement.content}"></td>
+	                <td th:text="${statement.statementPrice}"></td>
+	                <td th:text="${statement.note}"></td>
+	                <td th:text="${statement.expenseid}"></td>
+	            </tr>
+	        </table>
+	        <p th:if="${#lists.isEmpty(statements)}">登録されている明細はありません。</p>
+	    </div> -->
 </body>
 </html>

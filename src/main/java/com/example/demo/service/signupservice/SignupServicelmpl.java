@@ -29,6 +29,7 @@ public class SignupServicelmpl implements SignupService {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 		repository.save(user);
+		
 
 	}
 

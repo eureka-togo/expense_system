@@ -29,11 +29,18 @@ public class SignupController {
         return form;
     }
 
+    // サインアップ画面の表示
+    @GetMapping
+    public String signupForm(Model model) {
+        model.addAttribute("signupForm", new SignupForm());
+        return "signup/signup"; // signup.htmlへのパスを確認してください
+    }
+
     @PostMapping("/insert")
     public String insert(@Validated SignupForm signupForm, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, HttpSession session) {
+                         Model model, RedirectAttributes redirectAttributes, HttpSession session){
         if (bindingResult.hasErrors()) {
-            return "signup";
+            return "signup/signup"; // フォームにエラーがあった場合は再度サインアップ画面に戻る
         }
 
         // FormからEntity詰め替え
@@ -48,10 +55,10 @@ public class SignupController {
         // セッションにユーザー情報を保存
         session.setAttribute("signupUser", user);
 
-        return "redirect:/signup/signupConfirm";
+        return "redirect:/signup/confirm";
     }
 
-    @GetMapping("/signupConfirm")
+    @GetMapping("/confirm")
     public String signupConfirm(Model model, HttpSession session) {
         // セッションからユーザー情報を取得
         User user = (User) session.getAttribute("signupUser");
@@ -59,7 +66,7 @@ public class SignupController {
             return "redirect:/signup";
         }
         model.addAttribute("signupUser", user);
-        return "signupConfirm";
+        return "signup/signupConfirm"; // signupConfirm.htmlへのパスを確認してください
     }
 
     @PostMapping("/confirm")
@@ -76,11 +83,11 @@ public class SignupController {
         // セッションからユーザー情報を削除
         session.removeAttribute("signupUser");
         
-        return "redirect:/signup/signupComplete";
+        return "redirect:/signup/complete";
     }
 
-    @GetMapping("/signupComplete")
+    @GetMapping("/complete")
     public String signupComplete() {
-        return "signupComplete";
+        return "signup/signupComplete"; // signupComplete.htmlへのパスを確認してください
     }
 }

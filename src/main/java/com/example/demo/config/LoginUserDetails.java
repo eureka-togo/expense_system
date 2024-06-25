@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,77 +14,76 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
 public class LoginUserDetails implements UserDetails {
-	private final String email;
-	  private final String password;
-	  private final String name;
-	  private final Integer employeeNumber;
-	  private final Integer departmentid;
-	  private final Collection <? extends GrantedAuthority> authorities;
-	  
-	  public LoginUserDetails(User user) {
-	    this.email = user.getEmail();
-	    this.password = user.getPassword(); 
-	    this.name = user.getName();
-	    this.employeeNumber = user.getEmployeeNumber();
-	    this.departmentid = user.getDepartmentid();
-	    this.authorities = Arrays.stream(user.getRoles().split(","))
-	        .map(role -> new SimpleGrantedAuthority(role))
-	        .toList();
-	  }
+    private final Integer userid;
+    private final String name;
+    private final Integer employeeNumber;
+    private final Integer departmentid;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private final String email;
+    private final String password;
 
-	  @Override
-	  public Collection<? extends GrantedAuthority> getAuthorities() {
-	    // ロールのコレクションを返す
-	    return authorities;
-	  }
+    public LoginUserDetails(User user) {
+        this.userid = user.getUserid();
+        this.name = user.getName();
+        this.employeeNumber = user.getEmployeeNumber();
+        this.departmentid = user.getDepartmentid();
+        this.authorities = Arrays.stream(user.getRoles().split(","))
+            .map(SimpleGrantedAuthority::new)
+            .collect(Collectors.toList());
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+    }
 
-	  @Override
-	  public String getPassword() {
-	    // パスワードを返す
-	    return password;
-	  }
+    public Integer getUserid() {
+        return userid;
+    }
 
-	  @Override
-	  public String getUsername() {
-	    // ログイン名を返す
-	    return email;
-	  }
+    public String getName() {
+        return name;
+    }
+    
+    public Integer getEmployeeNumber() {
+        return employeeNumber;
+    }
+    
+    public Integer getDepartmentid() {
+        return departmentid;
+    }
 
-	  public String getName() {
-	    // ユーザー名を返す
-	    return name;
-	  }
-	  
-	  public Integer getEmployeeNumber() {
-		  return employeeNumber;
-	  }
-	  
-	  public Integer getDepartmentid() {
-		  return departmentid;
-	  }
-	  
-	  @Override
-	  public boolean isAccountNonExpired() {
-	    //  ユーザーが期限切れでなければtrueを返す
-	    return true;
-	  }
+    // 他のgetterメソッドも必要に応じて追加
 
-	  @Override
-	  public boolean isAccountNonLocked() {
-	    //  ユーザーがロックされていなければtrueを返す
-	    return true;
-	  }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
 
-	  @Override
-	  public boolean isCredentialsNonExpired() {
-	    //  パスワードが期限切れでなければtrueを返す
-	    return true;
-	  }
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
-	  @Override
-	  public boolean isEnabled() {
-	    //  ユーザーが有効ならtrueを返す
-	    return true;
-	  }
+    @Override
+    public String getUsername() {
+        return email;
+    }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

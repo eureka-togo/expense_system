@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>確認ページ</title>
+</head>
+<body>
+	<h1>明細内容確認ページ</h1>
+	
+	<p>明細作成日: <span th:text="${createStatement.statementCreationDate}"></span></p>
+	<p>科目ID: <span th:text="${createStatement.subjectid}"></span></p>
+	<p>支払先・内容: <span th:text="${createStatement.content}"></span></p>
+	<p>明細金額: <span th:text="${createStatement.statementPrice}"></span></p>
+	<p>備考: <span th:text="${createStatement.note}"></span></p>
+	
+	<form th:action="@{/statementCreate/confirm}" method="post">
+	    <input type="submit" value="送信">
+	</form>
+
+</body>
+</html>

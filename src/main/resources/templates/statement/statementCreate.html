@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>新規明細作成</title>
+</head>
+<body>
+	<h3>新規明細作成</h3>
+	    <form th:action="@{/statementCreate/insert}" th:object="${statementForm}" method="post">
+			
+			<label for="statementCreationDate">作成日:</label>
+            <input type="date" id="statementCreationDate" th:field="*{statementCreationDate}" /><br>
+	
+	        <label for="subjectid">科目ID:</label>
+	        <input type="number" id="subjectid" th:field="*{subjectid}"><br>
+	
+	        <label for="content">支払先・内容:</label>
+	        <input type="text" id="content" th:field="*{content}"><br>
+	
+	        <label for="statementPrice">明細金額:</label>
+	        <input type="number" id="statementPrice" th:field="*{statementPrice}"><br>
+	
+	        <label for="note">備考:</label>
+	        <input type="text" id="note" th:field="*{note}"><br>
+	
+	        <!-- <label for="expenseid">経費ID:</label>
+	        <input type="number" id="expenseid" th:field="*{expenseid}"><br>
+	         -->
+	        <button type="submit">作成</button>
+	    </form>
+		<a th:href="@{/}">ホーム画面</a>
+
+</body>
+</html>
